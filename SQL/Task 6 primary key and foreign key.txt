@@ -1,0 +1,64 @@
+PRIMARY KEY AND FOREIGN KEY
+
+
+
+
+
+CREATE TABLE ProjectData (
+    id INT PRIMARY KEY,
+    name VARCHAR(255),
+    description TEXT,
+    created_at DATETIME
+);
+
+
+select * from ProjectData;
+
+insert into ProjectData values(1,'Anbu','ada',23 /3.50 pm);
+
+CREATE PROCEDURE CreateProjectData
+    @id INT,
+    @name VARCHAR(255),
+    @description TEXT,
+    @created_at DATETIME
+AS
+BEGIN
+    INSERT INTO ProjectData (id, name, description, created_at)
+    VALUES (@id, @name, @description, @created_at)
+END
+
+
+
+CREATE PROCEDURE GetProjectData
+    @id INT
+AS
+BEGIN
+    SELECT *
+    FROM ProjectData
+    WHERE id = @id
+END
+
+
+
+CREATE PROCEDURE UpdateProjectData
+    @id INT,
+    @name VARCHAR(255),
+    @description TEXT,
+    @created_at DATETIME
+AS
+BEGIN
+    UPDATE ProjectData
+    SET name = @name,
+        description = @description,
+        created_at = @created_at
+    WHERE id = @id
+END
+
+
+CREATE PROCEDURE DeleteProjectData
+    @id INT
+AS
+BEGIN
+    DELETE FROM ProjectData
+    WHERE id = @id
+END
